@@ -52,8 +52,12 @@ gem 'bootsnap', require: false
 # Dotenv
 gem 'dotenv-rails', '~> 2.8'
 
+# Models
+gem 'email_validator', '~> 2.2'
+
 # Frontend
 gem 'pagy', '~> 6.0'
+gem 'simple_form', '~> 5.2'
 gem 'slim-rails'
 gem 'view_component'
 
@@ -84,3 +88,5 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
 end
+
+gem 'devise', '~> 4.9'
