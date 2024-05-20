@@ -1,24 +1,44 @@
-# README
+# Projeto Rails bank
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Descrição
+O Projeto Rails bank é uma aplicação web que inicialmente consiste em uma API para fornecer serviços de gerenciamento de contas e transações financeiras. No entanto, está em desenvolvimento um frontend completo para interação dos usuários com a plataforma.
 
-Things you may want to cover:
+## Funcionalidades Principais
+- Gerenciamento de contas de usuário
+- Realização de transações financeiras
+- Interface de usuário para interação e visualização de dados (em desenvolvimento)
 
-* Ruby version
+## Rotas da API
+- `/contas`: Rota para criação e exibição de contas de usuário.
+- `/transacoes`: Rota para criação e exibição de transações financeiras.
+- `/transferir`: Rota para realizar transferências entre contas.
 
-* System dependencies
+## Apipie
+A documentação da API é gerada utilizando o Apipie, uma ferramenta que facilita a documentação de APIs em Ruby on Rails. O Apipie permite descrever detalhadamente cada endpoint da API, incluindo os parâmetros esperados, exemplos de requisições e respostas, e informações sobre autenticação e autorização.
 
-* Configuration
+http://localhost:3000/documentacao
 
-* Database creation
+# Configuração do Projeto
 
-* Database initialization
+## Instruções para configurar e rodar o projeto localmente
 
-* How to run the test suite
+### Dependências principais
+- Docker (Caso queira utilizar o postgres)
+- asdf com plugins do Ruby e Nodejs
 
-* Services (job queues, cache servers, search engines, etc.)
+### Caso não queira usar asdf
+- Ruby 3.1.2
+- Rails ~> 7.1.3
+- Bundler
+- Nodejs 20.5.1
+- Yarn
+- Postgres ~> 15 ou (docker-compose up -d)
 
-* Deployment instructions
+1. Configure o arquivo `.env.development`.
+2. Execute o setup do projeto pelo comando `./bin/setup` (ou `RAILS_ENV=production ./bin/setup` para ambiente de produção).
+3. Instale as dependências do Node.js com o comando `yarn`.
+4. Rode o projeto bin/dev
 
-* ...
+## Testes
+
+Execute o comando `rspec`.
