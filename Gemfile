@@ -56,6 +56,7 @@ gem 'data_migrate', '~> 9.1'
 gem 'dotenv-rails', '~> 2.8'
 
 # Models
+gem 'active_model_serializers'
 gem 'email_validator', '~> 2.2'
 
 # Frontend
@@ -70,7 +71,12 @@ gem 'sidekiq', '~> 7.1'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mswin mswin64 mingw x64_mingw]
+  gem 'factory_bot_rails'
+  gem 'ffaker'
+  gem 'rails-controller-testing'
+  gem 'rspec-rails', '~> 5.0'
   gem 'rubocop', '~> 1.63', require: false
+  gem 'shoulda-matchers'
 end
 
 group :development do
