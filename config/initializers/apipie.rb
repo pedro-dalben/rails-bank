@@ -1,6 +1,6 @@
 Apipie.configure do |config|
   config.app_name                = 'Rails Bank'
-  config.api_base_url            = '/'
+  config.api_base_url            = ''
   config.doc_base_url            = '/documentacao'
   config.app_info                = 'Endpoint base de um banco'
   # where is your API defined?

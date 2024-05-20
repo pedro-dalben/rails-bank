@@ -3,7 +3,7 @@ module Api
   class AccountsController < ApplicationController
     skip_before_action :verify_authenticity_token
 
-    api :POST, '/api/accounts', 'Cria uma nova conta de usuário'
+    api :POST, '/conta', 'Cria uma nova conta de usuário'
     param :email, String, desc: 'E-mail do usuário', required: true
     param :nome, String, desc: 'Nome do usuário', required: true
     param :saldo, Float, desc: 'Saldo inicial da conta', required: true
