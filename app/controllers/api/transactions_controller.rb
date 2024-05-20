@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Controller for Transactions
 module Api
   class TransactionsController < ApplicationController
     before_action :find_account, only: [:create]

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :payment_method do
     code { "CODE#{rand(10..99)}" }

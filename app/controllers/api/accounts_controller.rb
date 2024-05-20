@@ -1,4 +1,6 @@
-# app/controllers/api/accounts_controller.rb
+# frozen_string_literal: true
+
+# Controller for Account
 module Api
   class AccountsController < ApplicationController
     skip_before_action :verify_authenticity_token
