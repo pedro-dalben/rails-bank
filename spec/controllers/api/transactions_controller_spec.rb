@@ -40,8 +40,8 @@ RSpec.describe Api::TransactionsController, type: :controller do
   describe 'POST #transfer' do
     let(:payment_method) { create(:payment_method) }
     let(:valid_transfer_params) do
-      { amount: 100, payment_method: payment_method.code, sender_account_id: sender_account.id,
-        receiver_account_id: receiver_account.id }
+      { valor: 100, forma_pagamento: payment_method.code, conta_envio_id: sender_account.id,
+        conta_recebimento_id: receiver_account.id }
     end
     let(:sender_account) { create(:account) }
     let(:receiver_account) { create(:account) }
@@ -56,8 +56,8 @@ RSpec.describe Api::TransactionsController, type: :controller do
 
     context 'with invalid params' do
       let(:invalid_transfer_params) do
-        { amount: 1000, payment_method: payment_method.code, sender_account_id: sender_account.id,
-          receiver_account_id: receiver_account.id }
+        { valor: 1000, forma_pagamento: payment_method.code, conta_envio_id: sender_account.id,
+          conta_recebimento_id: receiver_account.id }
       end
 
       it 'does not create a new transaction' do

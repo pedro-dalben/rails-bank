@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Api::AccountsController, type: :controller do
   describe 'POST #create' do
     context 'with valid params' do
-      let(:valid_params) { { email: 'test@example.com', name: 'Test User', saldo: 100.0 } }
+      let(:valid_params) { { email: 'test@example.com', nome: 'Test User', saldo: 100.0 } }
 
       it 'creates a new user and account' do
         expect do
@@ -17,7 +17,7 @@ RSpec.describe Api::AccountsController, type: :controller do
     end
 
     context 'with invalid params' do
-      let(:invalid_params) { { email: 'invalid_email', name: '', saldo: -10.0 } }
+      let(:invalid_params) { { email: 'invalid_email', nome: '', saldo: -10.0 } }
 
       it 'returns unprocessable entity status' do
         post :create, params: invalid_params, format: :json

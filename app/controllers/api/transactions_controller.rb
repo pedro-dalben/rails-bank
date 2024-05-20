@@ -1,11 +1,14 @@
-# frozen_string_literal: true
-
 module Api
   class TransactionsController < ApplicationController
     before_action :find_account, only: [:create]
     before_action :set_transaction, only: [:show]
     before_action :set_accounts, only: [:transfer]
     skip_before_action :verify_authenticity_token
+
+    api :POST, '/transacao', 'Cria uma nova transação'
+    param :valor, Float, desc: 'Valor da transação', required: true
+    param :forma_pagamento, String, desc: 'Código do método de pagamento', required: true
+    error code: 422, desc: 'Unprocessable Entity'
 
     def create
       amount = params[:valor].to_f
@@ -30,13 +33,24 @@ module Api
       end
     end
 
+    api :GET, '/transacao/:id', 'Exibe uma transação'
+    param :id, :number, desc: 'ID da transação', required: true
+    error code: 404, desc: 'Transação não encontrada'
+
     def show
       render json: @transaction
     end
 
+    api :POST, '/transferir', 'Transfere fundos entre contas'
+    param :valor, Float, desc: 'Valor a ser transferido', required: true
+    param :forma_pagamento, String, desc: 'Código do método de pagamento', required: true
+    param :conta_envio_id, Integer, desc: 'ID da conta de envio', required: true
+    param :conta_recebimento_id, Integer, desc: 'ID da conta de recebimento', required: true
+    error code: 422, desc: 'Unprocessable Entity'
+
     def transfer
-      amount = params[:amount].to_f
-      payment_method = PaymentMethod.find_by(code: params[:payment_method])
+      amount = params[:valor].to_f
+      payment_method = PaymentMethod.find_by(code: params[:forma_pagamento])
 
       if payment_method.nil?
         render json: { error: 'Forma de pagamento inválida' }, status: :unprocessable_entity
@@ -75,8 +89,8 @@ module Api
     end
 
     def set_accounts
-      @sender_account = Account.find_by(id: params[:sender_account_id])
-      @receiver_account = Account.find_by(id: params[:receiver_account_id])
+      @sender_account = Account.find_by(id: params[:conta_envio_id])
+      @receiver_account = Account.find_by(id: params[:conta_recebimento_id])
 
       return unless @sender_account.nil? || @receiver_account.nil?
 
