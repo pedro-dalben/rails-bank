@@ -13,6 +13,6 @@ class User < ApplicationRecord
   private
 
   def create_account
-    Account.create(user: self, name:, balance: 0.0)
+    Account.create(user: self, balance: 0.0)
   end
 end
