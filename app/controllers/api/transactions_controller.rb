@@ -62,7 +62,7 @@ module Api
 
       if @sender_account.balance >= amount + payment_method.fee(amount)
         ActiveRecord::Base.transaction do
-          @sender_account.update!(balance: @sender_account.balance - amount - payment_method.fee(amount))
+          @sender_account.update!(balance: @sender_account.balance - (amount + payment_method.fee(amount)))
           @receiver_account.update!(balance: @receiver_account.balance + amount)
 
           transaction = Transaction.create!(
@@ -75,6 +75,26 @@ module Api
         end
       else
         render json: { error: 'Insufficient balance' }, status: :unprocessable_entity
+      end
+    end
+
+    def withdraw
+      amount = params[:valor].to_f
+      payment_method = PaymentMethod.find_by(code: 'S')
+      account = Account.find_by(id: params[:conta_id])
+      puts account
+      if account && account.balance >= amount + payment_method.fee(amount)
+        ActiveRecord::Base.transaction do
+          account.update!(balance: account.balance - (amount + payment_method.fee(amount)))
+          transaction = Transaction.create!(
+            amount:,
+            payment_method:,
+            receiver: account
+          )
+          render json: transaction, status: :created
+        end
+      else
+        render json: { error: 'Insufficient balance or invalid account' }, status: :unprocessable_entity
       end
     end
 

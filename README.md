@@ -42,3 +42,8 @@ http://localhost:3000/documentacao
 ## Testes
 
 Execute o comando `rspec`.
+
+## Testes de Endpoint
+`curl -X POST http://localhost:3000/conta -H "Content-Type: application/json" -d '{"email": "test@example.com", "saldo": 180.37, "name": "Test User"}'`
+
+`curl -X POST http://localhost:3000/api/transferir -H "Content-Type: application/json" -d '{"forma_pagamento": "D", "conta_envio_id": 2, "conta_recebimento_id": 2, "valor": 10}'`

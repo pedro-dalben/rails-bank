@@ -10,9 +10,9 @@ Rails.application.routes.draw do
   namespace :api do
     resources :accounts, only: %i[create show]
     resources :transactions, only: %i[create show]
-    post 'transfer', to: 'transactions#transfer'
+    post 'transferir', to: 'transactions#transfer'
+    post 'sacar', to: 'transactions#withdraw'
   end
   resources :conta, controller: 'accounts', only: %i[create show]
   resources :transacao, controller: 'transactions', only: %i[create show]
-  resources :transferir, controller: 'transactions', only: %i[transfer]
 end
